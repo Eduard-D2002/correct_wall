@@ -1,9 +1,11 @@
  let wh = '';
  let wall_schema = [];
  let  brick_parameters = [];
+ let yes = document.getElementById('yes');
+ let no = document.getElementById('no');
+ 
 
-
- let x = document.querySelectorAll('output');
+ let output = document.querySelectorAll('output');
  function openFile(event) {
    let input = event.target;
 
@@ -12,15 +14,20 @@
      let text = reader.result;
      let node = document.getElementById('output');
      node.innerText = text;
-     x = text;
+     output = text;
    };
    reader.readAsText(input.files[0]);
    setTimeout(() => {
-       setData()
-   }, 4000);
+       setData();
+      setTimeout(() => {
+         out_solution();
+      }, 1000);
+   }, 1000);
+   
  };
+
  function setData() {
-   let arr = x.split('\n');
+   let arr = output.split('\n');
    for (let i = 0 ; i < arr.length-1; i++){
        arr[i] = arr[i].slice(0,-1);
    }
@@ -39,12 +46,7 @@
            brick_parameters[i][j]= + brick_parameters[i][j];
        }
    }
-   console.log(arr)
-   console.log(wh);
-   console.log(wall_schema);
-   console.log(brick_parameters);
-
-}
+ }
 
 
 
@@ -83,11 +85,7 @@
             brick_parameters[i][j] = +brick_parameters[i][j];
          }
        }
-       console.log(wh);
-       console.log(wall_schema);
-       console.log(brick_parameters);
-       
-
+       out_solution();
     }
  }
  
@@ -173,10 +171,6 @@ function max_w_h (arr) {
    } 
 }
 // --------------------------------------------------------------------------------------------------
-
-// func return width of section (help to search max width) -----------------------------------------
-
-// -------------------------------------------------------------------------------------------------
 
 // func return height of wall (help to search max height) -----------------------------------------
 function max_h(array) {
@@ -310,6 +304,9 @@ function find_bricks(str) {
    if(str === true){
       return true;
    }
+   if(str.slice(-1) == ' '){
+      str = str.slice(0,-1)
+   }
    let arr = str.split(' ');
    for (let i = 0; i < arr.length ; i++) {
       if(!verify_brick(arr[i])) {
@@ -390,8 +387,15 @@ function all_verifications () {
 
    return true;
 }
+console.log(yes);
 
-console.log(all_verifications());
+function out_solution(){
+   if(all_verifications()){
+      yes.classList.remove('hidden');
+   } else{
+      no.classList.remove('hidden');
+   }
+}
 
 
 
