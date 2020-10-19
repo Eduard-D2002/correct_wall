@@ -1,4 +1,4 @@
-/*  let wh
+ let wh
  let wall_schema = [];
  let  brick_parameters = [];
 
@@ -43,10 +43,10 @@
     }
  }
  
- input(); */
+ input(); 
  
  //input data ------------------------------------------------------------------------
- let wh = '5 2';
+ /* let wh = '5 2';
  const  wall_schema = [
         [0,0,0,0,0],
         [1,1,1,1,0],
@@ -55,7 +55,7 @@
         [1,1,4],
         [1,4,2],
         [1,3,2],
-     ];
+     ]; */
 //--------------------------------------------------------------------------------------
 
 
@@ -352,216 +352,3 @@ console.log(all_verifications());
 
 
 
-//робочий варіант
-/* function verify_brick (width) {
-   let same_width = false;
-   let arr_num = -1;
-   for (let i =  1; i < width ; i++ ) {
-      if(isSameWidth(width)) {
-         return true;
-      } else if(isSameWidth(width-i) ){
-         let temp_arr_num = arr_num;
-         if(isSameWidth(i)){
-            return true;
-         } else {
-            brick_parameters[temp_arr_num][2]++;
-         }
-      } 
-   }
-
-   function isSameWidth (width) {
-      for (let j = 0; j < brick_parameters.length; j++) {
-         if ( brick_parameters[j][1] == 1 && brick_parameters[j][2] > 0){
-            if (brick_parameters[j][0] == width) {
-               brick_parameters[j][2]--;
-               arr_num = j;
-               return true;
-            }
-         } else if(brick_parameters[j][0] == 1 && brick_parameters[j][2] > 0) {
-            if (brick_parameters[j][1] == width) {
-               brick_parameters[j][2]--;
-               arr_num = j;
-               return true;
-            }
-         }
-      }
-      return false;
-   }
-} */
-
-
-
-
-
-
-
-/* let stage = 0;
-//--------------------------------------------------------
-  if (isMore(bricks_cell_num(brick_parameters),schema_cell_num(wall_schema))) {
-     stage++;
-    }
-//--------------------------------------------------------
-  if (wh == max_w_h(wall_schema)){
-     console.log(true)
-  } */
- 
-
-
-
-
-/* function Neighbor(arr,index) {
-   let temp = arr[index].toString().replaceAll(',','').split('0') ;
-   for ( let i = 0 ; i < temp.length ; i++) {
-      temp[i] = temp[i].replaceAll('1','0');
-   }
-
-   let temp2 = arr[index+1].toString().replaceAll(',','').split('1');
-
-  /*  if (array_compare(temp,temp2)){
-      return array_compare(temp,temp2);
-   } 
-   let ret1 = array_compare(temp,temp2);
-   if (array_compare(temp,temp2)){
-      for (let i = 0 ; i < temp.length ; i++) {
-         if ( temp[i].length == ret1 ){
-            temp[i] = '';
-         }
-      }
-   }
-
-   if(array_compare(temp,temp2)){
-      return `${ret1} ${array_compare(temp,temp2)}`
-   } else return ret1;
-   // return width of unitary bricks ---------
-   function array_compare(a, b){
-    for(i = 0; i < a.length; i++){
-       if(a[i] != undefined && b[i] != undefined){
-         if(( a[i].toString().search('0') != -1 ) && ( b[i].toString().search('0') != -1 ) && a[i].length <= b[i].length) {
-            return a[i].length;
-         }
-         else if( b[i-1] != undefined){
-            if ( a[i].length > b[i].length){
-              if(( a[i].toString().search('0') != -1 ) && ( b[i-1].toString().search('0') != -1 ) ){
-                 return a[i].length;
-              }
-            }
-         }
-       } 
-      } return false;
-   }
-  
-} */
-
-
-
-
-
-
-
-
-
-
-
-
-// беру по горизонтальних шарах  та вирізаю на окремі куски 
- /* for  (let i = wall_schema.length - 1 ; i >= 0; i--) {
-     let temp = wall_schema[i].toString().replaceAll(',','').split('0') ;
-
-    for (let j = 0 ; j < copy_brick_parameters.length; j++) {
-       for(let k = 0 ; k < temp.length ; k++){
-     console.log(temp[k].length);
-
-      if (copy_brick_parameters[j][0] == 1){
-         if(copy_brick_parameters[j][1] == temp[k].length){
-            break;
-         }
-      }
-      }
-    }
- } */
-
-
-
-
-/* function max_w(array){
-   let left_bd = 100;
-   let right_bd = 0;
-   let array_rev;
-   for (let i = 0 ; i < array.length ; i++ ) {
-      if(left_bd > array[i].toString().replaceAll(',','').indexOf('1')){
-         if(array[i].toString().replaceAll(',','').search('1') != -1){
-            left_bd = array[i].toString().replaceAll(',','').indexOf('1');
-         }
-         
-      }
-       array_rev = array[i].reverse().toString().replaceAll(',','');
-      if(right_bd < array[i].length - array_rev[i].toString().replaceAll(',','').search('1') ){
-         if(array_rev[i].toString().replaceAll(',','').search('1') != -1){
-            right_bd = array[i].length - array_rev[i].toString().replaceAll(',','').search('1');
-         }
-         
-      }
-   }
-   return right_bd - left_bd
-} */
-
-
-/* for (let i = 0; i < arr.length; i++) {
-   let temp = +/\d+/.exec(arr[i].toString().replaceAll(',',''));
-   temp = isOne(temp.toString());
-   width = temp.toString().length;
-   temp = temp.toString().slice(0,1)
-   if(temp == 0 ){
-      continue;
-   }else {
-      if ( i != 0  ) {
-         if( temp == (+/\d+/.exec(arr[i-1].toString())).toString().slice(0,1)){
-            width = '';
-         }
-      }
-      if(i != arr.length - 1){
-         if(temp == (+/\d+/.exec(arr[i+1].toString())).toString().slice(0,1)){
-            width = '';
-         }
-      }
-   }
-   if(width != undefined){
-      counter = counter +' ' + width;
-   }
-} */
-
-
-
-
-//wh з багом
-/* function max_w_h (arr) {
-   let width = 0;
-
-    for (let i = 0; i < arr.length ; i++) {
-       let w = max_w(arr[i]);
-      if(w > width){
-         width = w;
-      }
-   } 
-   return '' + width + ' ' + max_h(arr);
-
-}
-// --------------------------------------------------------------------------------------------------
-
-// func return width of section (help to search max width) -----------------------------------------
- function max_w(array){
-   let tmp = array;
-   let arr1 = tmp.toString().replaceAll(',','');
-
-   let arr1_rev = tmp.reverse().toString().replaceAll(',','');
-
-   let a = 0,
-       b = 0;
-
-   if(arr1.indexOf('1') != -1 && arr1_rev.indexOf('1') != -1) {
-      a = arr1.indexOf('1');
-      b = arr1.length - arr1_rev.indexOf('1');
-   }
-
-   return  b - a;
-}  */
