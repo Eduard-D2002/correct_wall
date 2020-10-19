@@ -3,12 +3,11 @@
  let  brick_parameters = [];
  let yes = document.getElementById('yes');
  let no = document.getElementById('no');
- 
-
  let output = document.querySelectorAll('output');
+
+
  function openFile(event) {
    let input = event.target;
-
    let reader = new FileReader();
    reader.onload = function(){
      let text = reader.result;
@@ -21,8 +20,8 @@
        setData();
       setTimeout(() => {
          out_solution();
-      }, 1000);
-   }, 1000);
+      }, 500);
+   }, 500);
    
  };
 
@@ -49,13 +48,9 @@
  }
 
 
-
  function input () {
     let isFileInput = confirm('Do you want to enter data from the file?');
     if(isFileInput){
-     
-      
-        
     } else {
        wh = prompt('Please, enter width and height of your wall');
        console.log(wh);
@@ -90,21 +85,6 @@
  }
  
  input(); 
- 
- //input data ------------------------------------------------------------------------
- /* let wh = '5 2';
- const  wall_schema = [
-        [0,0,0,0,0],
-        [1,1,1,1,0],
-     ];
- let  brick_parameters = [
-        [1,1,4],
-        [1,4,2],
-        [1,3,2],
-     ]; */
-//--------------------------------------------------------------------------------------
-
-
 
 // search num of 1 at the schema ------------------------------------------------------
  function schema_cell_num(schema) {
@@ -140,9 +120,9 @@
  function isMore(num1, num2){
     return num1 >= num2;
  }
-//-------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
 
-// max width and height of wal schema ---------------------------------------------------------------
+// max width and height of wal schema ----------------------------------------------------
 function max_w_h (arr) {
    let width = 0;
    let left_border = 0;
@@ -170,9 +150,9 @@ function max_w_h (arr) {
    
    } 
 }
-// --------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------
 
-// func return height of wall (help to search max height) -----------------------------------------
+// func return height of wall  -----------------------------------------------------------
 function max_h(array) {
    let h = array.length;
    for (let i = 0 ; i < array.length; i++ ) {
@@ -191,9 +171,9 @@ function max_h(array) {
    }
    return h;
 }
-// --------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------
 
-// get shape of bricks -----------------------------------------------------------------------------
+// get shapes of scheme -------------------------------------------------------------------------
    function getShapes(A){
    let B=[],empty=0,newCharCode=49;
    function b(i,j){return B[i]&&B[i][j];}
@@ -221,7 +201,7 @@ function max_h(array) {
 }
 // ------------------------------------------------------------------------------------
 
-// check if the item has a neighbor---------------------------------------------------
+// checks if the item has a neighbor --------------------------------------------------
 function isNeighbor (arr) {
    let counter = '';
    let width = '';
@@ -299,7 +279,7 @@ function isNeighbor (arr) {
 }
 //---------------------------------------------------------------------------------------
 
-// check if we have all required bricks --------------------------------------------
+// find all required bricks -------------------------------------------------------------
 function find_bricks(str) {
    if(str === true){
       return true;
@@ -317,7 +297,7 @@ function find_bricks(str) {
 }
 //----------------------------------------------------------------------------------------
 
-// check if we have brick that has the current width -----------------------
+// check if we have brick that has the current width -------------------------------------
 function verify_brick (width) {
    let arr_num = -1;
    let temp_temp = width;
@@ -331,7 +311,7 @@ function verify_brick (width) {
          } 
       } 
    }
-   
+
    function isPartWidth (width2){
       let temp_temp2 = width2;
       for (let z =  1; z < width2 || temp_temp2 == 1 ; z++ ) {
@@ -370,17 +350,18 @@ function verify_brick (width) {
    }
    return false;
 }
-//--------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
-//----verifies-----verifies-------verifies-------verifies--------verifies-------verifies-------
+//----all verifies-----all verifies-------all verifies-------all verifies--------
 function all_verifications () {
-   if(!find_bricks(isNeighbor(getShapes(wall_schema)))){
+   if (wh != max_w_h(wall_schema)){
       return false;
    }
    if (!isMore(bricks_cell_num(brick_parameters),schema_cell_num(wall_schema))) {
       return false;
      }
-   if (wh != max_w_h(wall_schema)){
+  
+   if(!find_bricks(isNeighbor(getShapes(wall_schema)))){
       return false;
    }
 
@@ -388,7 +369,9 @@ function all_verifications () {
    return true;
 }
 console.log(yes);
+//--------------------------------------------------------------------------------
 
+// output ------------------------------------------------------------------------
 function out_solution(){
    if(all_verifications()){
       yes.classList.remove('hidden');
