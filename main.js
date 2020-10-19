@@ -1,11 +1,59 @@
- let wh
+ let wh = '';
  let wall_schema = [];
  let  brick_parameters = [];
+
+
+ let x = document.querySelectorAll('output');
+ function openFile(event) {
+   let input = event.target;
+
+   let reader = new FileReader();
+   reader.onload = function(){
+     let text = reader.result;
+     let node = document.getElementById('output');
+     node.innerText = text;
+     x = text;
+   };
+   reader.readAsText(input.files[0]);
+   setTimeout(() => {
+       setData()
+   }, 4000);
+ };
+ function setData() {
+   let arr = x.split('\n');
+   for (let i = 0 ; i < arr.length-1; i++){
+       arr[i] = arr[i].slice(0,-1);
+   }
+   wh = arr[0].toString();
+   let height = +wh.slice(-1);
+   for( let i = 0 ; i < height ; i++) {
+       wall_schema[i] = arr[i+1].split('');
+       for ( let j = 0; j < wall_schema[i].length; j++) {
+           wall_schema[i][j]= + wall_schema[i][j];
+       }
+   }
+   let sort_num = arr[height+1];
+   for ( let i = 0; i < sort_num ; i++) {
+       brick_parameters[i] = arr[i+height+2].split(' ');
+       for ( let j = 0; j < brick_parameters[i].length; j++) {
+           brick_parameters[i][j]= + brick_parameters[i][j];
+       }
+   }
+   console.log(arr)
+   console.log(wh);
+   console.log(wall_schema);
+   console.log(brick_parameters);
+
+}
+
+
 
  function input () {
     let isFileInput = confirm('Do you want to enter data from the file?');
     if(isFileInput){
-
+     
+      
+        
     } else {
        wh = prompt('Please, enter width and height of your wall');
        console.log(wh);
@@ -153,10 +201,10 @@ function max_h(array) {
 
 // get shape of bricks -----------------------------------------------------------------------------
    function getShapes(A){
-   var B=[],empty=0,newCharCode=49;
+   let B=[],empty=0,newCharCode=49;
    function b(i,j){return B[i]&&B[i][j];}
    function concatFigure(i,j,to){
-      var bij=b(i,j);
+      let bij=b(i,j);
       if(!bij||bij==to)return;
       B[i][j]=to;
       concatFigure(i-1,j,to); concatFigure(i,j-1,to);
@@ -166,7 +214,7 @@ function max_h(array) {
       B.push([]);
       row.forEach(function(el,c){
          if(el==empty) return B[r][c]=undefined; 
-         var near=[b(r-1,c), b(r+1,c), b(r,c-1), b(r,c+1)],
+         let near=[b(r-1,c), b(r+1,c), b(r,c-1), b(r,c+1)],
             figures=near.filter(function(e,i,a){return e && a.indexOf(e)==i;}),
             char=figures[0] || String.fromCharCode(newCharCode++);
          if(figures.length<2)
